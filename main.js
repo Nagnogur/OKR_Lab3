@@ -5,6 +5,17 @@ let leftSlider = document.getElementsByClassName("left-arrow")[0];
 let slider = document.getElementsByClassName("slide-content")[0];
 let rightSlider = document.getElementsByClassName("right-arrow")[0];
 
+window.addEventListener('resize', function(){
+    let o = document.body.scrollWidth / slideWidth;
+    slide *= o;
+    slideWidth = document.body.scrollWidth;
+    slider.classList.add('notransition');
+    slider.style.transform = 'translateX(' + slide + 'px)';
+    slider.offsetHeight;
+    slider.classList.remove('notransition');
+    
+})
+
 window.addEventListener('scroll', function(){
   var header = document.getElementsByTagName('header')[0];
   let contentOffset = document.getElementsByClassName("content")[0].offsetTop;
@@ -15,9 +26,11 @@ window.addEventListener('scroll', function(){
   if(headerPos > contentOffset){
       left.style.backgroundColor = '#001e50';
       right.style.backgroundColor = '#001e50';
+      header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
   } else {
         left.style.backgroundColor = '#ffffff';
         right.style.backgroundColor = '#ffffff';
+        header.style.background = 'transparent';
   }
 
   if ((document.body.getBoundingClientRect()).top > scrollPos){
